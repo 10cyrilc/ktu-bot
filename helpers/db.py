@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from config import Config
-
+from datetime import date
 client = MongoClient(Config.MONGO_URI)
 
 db = client[Config.SESSION_NAME]
@@ -10,7 +10,8 @@ collection = db["test-hashes"]
 
 def add_hash(hash):
     new_item = {
-        "hash": hash
+        "hash": hash,
+        "date": str(date.today())
     }
     post_id = collection.insert_one(new_item).inserted_id
     return post_id
