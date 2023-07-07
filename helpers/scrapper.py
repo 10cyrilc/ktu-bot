@@ -8,8 +8,6 @@ from config import Config
 
 bot = telegram.Bot(token=Config.BOT_ID)
 
-
-# link = "http://localhost:5200/"
 link = "https://ktu.edu.in/eu/core/announcements.htm"
 wa_link = "https://api.whatsapp.com/send?text="
 

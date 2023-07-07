@@ -4,7 +4,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-logger.setLevel("DEBUG")
+logger.setLevel("WARN")
 
 
 if __name__ == "__main__":
