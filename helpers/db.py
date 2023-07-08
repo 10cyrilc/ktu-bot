@@ -5,7 +5,7 @@ client = MongoClient(Config.MONGO_URI)
 
 db = client[Config.SESSION_NAME]
 
-collection = db["test-hashes"]
+collection = db["hashes"]
 
 
 def add_hash(hash):

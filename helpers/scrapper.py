@@ -10,18 +10,14 @@ bot = telegram.Bot(token=Config.BOT_ID)
 
 link = "https://ktu.edu.in/eu/core/announcements.htm"
 wa_link = "https://api.whatsapp.com/send?text="
+notification_check = ['Notification', 'notification', 'circular', 'Circular']
 
 
 async def scrape(logger):
-    s1 = time.time()
     logger.info("Getting Data...")
     page = requests.get(link)
-    s2 = time.time()
-    logger.debug(s2 - s1)
     logger.info("Data Recieved....")
     soup = BeautifulSoup(page.content, "lxml")
-    s3 = time.time()
-    logger.debug(s3-s2)
     table = soup.find("table")
     trs = table.find_all("tr")
     for i in range(5):
@@ -43,7 +39,7 @@ async def scrape(logger):
 
         hash_content = dates + "\n" + heading + "\n" + body
 
-        if not "Notification" or "notification" in body:
+        if not any([x in body for x in notification_check]):
             not_link = ""
         else:
             pos = body.rfind("Notification")
@@ -61,21 +57,21 @@ async def scrape(logger):
 
         reply_markup = telegram.InlineKeyboardMarkup(keyboard)
 
-        await hasher(hash_content, share_content, reply_markup)
+        await hasher(logger, hash_content, share_content, reply_markup)
 
     logger.info("Completed")
 
 
-async def hasher(hash_string, share_string, reply_markup):
+async def hasher(logger, hash_string, share_string, reply_markup):
     result = hashlib.md5(hash_string.encode())
     final_hash = result.hexdigest()
     check_hash = get_hash(final_hash)
     if not check_hash:
         add_hash(final_hash)
-        print(final_hash)
+        logger.warning(final_hash)
         await bot.send_message(chat_id=Config.CHAT_ID, text=share_string, reply_markup=reply_markup, parse_mode="HTML")
     else:
-        print("No Changes")
+        logger.warning("No Changes")
 
 
 def remSpace(limiter, string):

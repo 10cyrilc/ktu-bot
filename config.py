@@ -8,4 +8,4 @@ class Config():
     MONGO_URI = os.getenv("MONGO_URI")
     SESSION_NAME = os.getenv("SESSION_NAME")
     BOT_ID = os.getenv("BOT_ID")
-    CHAT_ID = os.getenv("CHAT_ID")
+    CHAT_ID = int(os.getenv("CHAT_ID"))
