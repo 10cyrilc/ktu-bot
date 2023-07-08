@@ -37,13 +37,13 @@ Live Working Demo on [KTU Announcements](https://t.me/ktu_announcement)
    - For macOS/Linux:
 
      ```shell
-     source env/bin/activate
+     source venv/bin/activate
      ```
 
    - For Windows:
 
      ```shell
-     env\Scripts\activate
+     venv\Scripts\activate
      ```
 
 5. Install the required dependencies:
