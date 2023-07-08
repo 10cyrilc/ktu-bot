@@ -2,6 +2,10 @@
 
 The KTU Bot is a Python-based bot that scrapes data from the Kerala Technological University (KTU) official website to provide you with the latest announcements. It retrieves information from the [KTU Announcements page](https://ktu.edu.in/eu/core/announcements.htm) and delivers updates to your channel or chat.
 
+## Demo
+
+Live Working Demo on [KTU Announcements](https://t.me/ktu_announcement)
+
 ## Features
 
 - Scrapes the KTU Announcements page for the latest updates.
@@ -77,15 +81,15 @@ The KTU Bot is a Python-based bot that scrapes data from the Kerala Technologica
 
 ## Usage
 
-The KTU Announcement Bot will now run as a scheduled cron job, scraping the KTU Announcements page and sending notifications to your specified Telegram chat every 5 minutes.
+The KTU Bot will now run as a scheduled cron job, scraping the KTU Announcements page and sending notifications to your specified Telegram chat every 5 minutes.
 
 ## Contributing
 
-Contributions to the KTU Announcement Bot are welcome! If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub repository. You can also submit pull requests with your proposed changes.
+Contributions to the KTU Bot are welcome! If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub repository. You can also submit pull requests with your proposed changes.
 
 ## License
 
-The KTU Announcement Bot is licensed under the [MIT License](LICENSE).
+The KTU Bot is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
