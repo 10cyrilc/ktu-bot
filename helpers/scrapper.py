@@ -10,7 +10,6 @@ bot = telegram.Bot(token=Config.BOT_ID)
 
 link = "https://ktu.edu.in/eu/core/announcements.htm"
 wa_link = "https://api.whatsapp.com/send?text="
-notification_check = ['Notification', 'notification', 'circular', 'Circular']
 
 
 async def scrape(logger):
@@ -33,20 +32,15 @@ async def scrape(logger):
 
         try:
             not_link = "https://ktu.edu.in" + not_a['href']
+            not_content = not_a.text
             not_link = remSpace("", not_link)
         except:
             not_link = ""
+            not_content = ""
 
         hash_content = dates + "\n" + heading + "\n" + body
 
-        if not any([x in body for x in notification_check]):
-            not_link = ""
-        else:
-            pos = body.rfind("Notification")
-            if pos > -1:
-                body = body[:pos] + \
-                    f'\n\n<a href="{not_link}">Notification</a>' + \
-                    body[pos + len("Notification"):]
+        body += f'\n\n<a href="{not_link}">{not_content}</a>'
 
         share_content = f"<b>{dates}</b>\n\n{heading}\n\n{body}"
 
@@ -71,7 +65,7 @@ async def hasher(logger, hash_string, share_string, reply_markup):
         logger.warning(final_hash)
         await bot.send_message(chat_id=Config.CHAT_ID, text=share_string, reply_markup=reply_markup, parse_mode="HTML")
     else:
-        logger.warning("No Changes")
+        logger.warning(f"{final_hash} - No Changes")
 
 
 def remSpace(limiter, string):
